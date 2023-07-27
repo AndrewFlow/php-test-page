@@ -48,8 +48,9 @@
     .about__content {
         width:100%;
         margin-top: 0rem;
-        padding:0 2rem;
+        padding:0 0.5rem;
         text-align: justify;
+        
     }
     .about__title {
         font-size: 2rem;
@@ -70,11 +71,11 @@
 
     .stage {
         flex: 0 1 80%;
-        margin: 1rem auto;
+        margin: 0 auto;
     }
 
     .stage__photo {
-        width: 100%;
+        width: 60%;
         height: auto;
     }
     .stage__name {

@@ -1,43 +1,43 @@
-<link rel="stylesheet" href="./check_post.css">
-
 <?php
-$name = $_POST['username'];
-$email = $_POST['email'];
-$message = $_POST['message'];
+session_start();
+function redirect () {
+    header('Location: ../info.php');
+    exit;
+}
+$name = htmlspecialchars(trim($_POST['username'])); // htmlchars удаляет html теги если такие есть в полях . Так же удаляет пробелы
+$email = htmlspecialchars(trim($_POST['email']));
+$message = htmlspecialchars(trim($_POST['message']));
+$mailregex = "/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i";
+
+$_SESSION['username'] = $name;
+$_SESSION['email'] = $email;
+$_SESSION['message'] = $message;
 
 
-
-if (trim($name) == "" || trim($email) == "" || trim($message) == "") {
-    echo ('<div class="error">
-    <div class="error__body">
-        <h3 class="error__text">Заполните все поля и повторите отправку</h2>
-        <a class="error__container" href="../info.php">
-            <img class ="error__img" src="../MyResume_files/error.gif" alt="">
-        </a>
-        <a class="error__link" href="../info.php"> 	&LT; Обратно к заявке</a>
-    </div>
-</div>');
-} else if (strlen(trim($name)) <= 1 || strlen(trim($name)) > 30) {
-    echo ('<div class="error">
-    <div class="error__body">
-        <h3 class="error__text">Имя должно содержать не менее 2 символов и не более 30</h3>
-        <a class="error__container" href="../info.php">
-            <img class ="error__img" src="../MyResume_files/error.gif" alt="">
-        </a>
-        <a class="error__link" href="../info.php"> Обратно к заявке</a>
-    </div>
-</div>');
-} else if (trim(!preg_match("/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i", $email))) {
-    echo ('<div class="error">
-    <div class="error__body">
-        <h3 class="error__text">Введите корректный email</h3>
-        <a class="error__container" href="../info.php">
-            <img class ="error__img" src="../MyResume_files/error.gif" alt="">
-        </a>
-        <a class="error__link" href="../info.php"> Обратно к заявке</a>
-    </div>
-</div>');
+if ($name == "") {
+    $_SESSION['error__name'] = 'Заполните поле';
+    redirect();
+} else if (strlen($name) <= 1 || strlen($name) > 30) {
+    $_SESSION['error__name'] = 'Имя должно содержать минимум 2 символа и максимум 30';
+    redirect();
+} else if (trim(!preg_match($mailregex, $email))) {
+    $_SESSION['error__email'] = 'ВВедите корректный email';
+    redirect();
+} else if ($message == "" ) {
+    $_SESSION['error__message'] = 'Заполните поле';
+    redirect();
+} else if (strlen($message) <= 4 || strlen($message) > 70) {
+    $_SESSION['error__message'] = 'Сообщение должно содержать быть более емким!(но не слишком большим)';
+    redirect();
 } else {
+    /* отправка письма 
+    $message = "=?utf-8?B?".base64_encode($message);
+    $headers = "From: $email\r\nReply-to: $email\r\nContent-type:text/plain; charset=utf-8\r\r";
+    mail('test123@mail.ru',$message,$headers);
+    */
+    $_SESSION['error__name'] = '';
+    $_SESSION['error__email'] = '';
+    $_SESSION['error__message'] = '';
     echo ('<div class="success">
     <div class="success__body">
         <h2 class="success__text">Ваше сообщение успешно отправлено. Мы с вами свяжемся!</h2>
@@ -48,3 +48,6 @@ if (trim($name) == "" || trim($email) == "" || trim($message) == "") {
     </div>
 </div>');
 }
+
+?>
+<link rel="stylesheet" href="./check_post.css">

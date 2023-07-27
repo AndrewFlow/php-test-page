@@ -42,8 +42,7 @@ p {
 .container {
     width: 100%;
     max-width: 1200px;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0px 5px;
     margin: 0 auto;
 
 }
@@ -61,10 +60,10 @@ p {
 .contact__inner {
     max-width: 500px;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid var(--grey);
+    border-bottom: 1px solid #dedede;
 }
 
 .contact__inner:last-child {
@@ -78,12 +77,18 @@ p {
     width: 100%;
     border: none;
 }
-
+.contact__label {
+    color: #807777;
+}
 .contact__body {
     display: flex;
     flex-direction: column;
 
     align-items: center;
+}
+.conctact__error {
+    font-size: 12px;
+    color: brown;
 }
 
 .header {
@@ -151,7 +156,7 @@ p {
 
 .intro__inner {
     display: flex;
-    margin: 6.6rem;
+    margin: 6.6rem 0px 0px 0px;
     padding-bottom: 3rem;
     position: relative;
     border-bottom: 1px solid black;
@@ -307,14 +312,17 @@ p {
 
 .about__inner {
     display: flex;
-    flex-wrap: wrap;
     margin-bottom: 7.06rem;
 }
 
 .photo__about {
-    width: 50%;
+    width: 30%;
     height: 50%;
-    padding-left: 3.5rem;
+    margin-left: 3.5rem;
+}
+
+.photo__about-border {
+    border-radius: 10px;
 }
 
 .about__content {
@@ -426,7 +434,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0px 0.6rem;
+
 
 }
 
@@ -434,6 +442,9 @@ p {
     flex: 0 1 33.333%;
     margin-bottom: 1rem;
     padding: 1rem 0.6rem 0rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -605,4 +616,7 @@ p {
 .btn-center {
     align-self: center;
     justify-content: center;
+}
+.btn-contact {
+    margin-top: 30px;
 }
