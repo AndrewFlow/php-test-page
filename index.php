@@ -1,4 +1,4 @@
-
+ тест 2
 <?php
 require './components/header.php';
 ?>
