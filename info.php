@@ -9,10 +9,10 @@ require './components/header.php';
                 <h3 class="about__title">Обратная</h3>
                 <h2 class="about__subtitle">Связь</h2>
                 <div class="contact">
-                    <form class="contact__body">
+                    <form class="contact__body" action="../components/check_post.php" method="post">
                         <div class="contact__inner">
                             <label for="text">Имя</label>
-                            <input class="contact__input" type="text" name="text" id="">
+                            <input class="contact__input" type="text" name="username" id="">
                         </div>
 
                         <div class="contact__inner">
@@ -24,7 +24,7 @@ require './components/header.php';
                             <label for="text">Ваш вопрос</label>
                             <input class="contact__input" type="text" name="message" id="">
                         </div>
-                        <button class="btn btn-center" type="submit" >Отправить</button>
+                        <button class="btn btn-center" type="submit">Отправить</button>
                     </form>
                 </div>
 
@@ -32,6 +32,8 @@ require './components/header.php';
         </div>
     </div>
 </div>
+
+
 <?php
 require './components/footer.php';
 ?>
